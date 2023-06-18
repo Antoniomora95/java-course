@@ -19,13 +19,12 @@ public class simplifiedFraction {
         if (denominator == 0)
             return numerator;
         return __gcd(denominator, numerator % denominator);
-
     }
 
     // Driver Code
     public static void main(String[] args) {
-        double numerator = 0.16666666666666666;
-        double denominator = 1;
+        double numerator = 8;
+        double denominator = 16;
 
         reduceFraction(numerator, denominator);
     }

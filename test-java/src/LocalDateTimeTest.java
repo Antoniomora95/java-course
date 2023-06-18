@@ -18,6 +18,8 @@ public class LocalDateTimeTest
 
         // option 1: transform from local date time to offset date time, and keep only 3 digits in milliseconds
         LocalDateTime baseLocalTime = LocalDateTime.now();
+        System.out.println(baseLocalTime+"base local time");
+
         OffsetDateTime offsetDateTime = OffsetDateTime.of(baseLocalTime, OffsetDateTime.now().getOffset());
         OffsetDateTime trimmedOffsetDateTime = trimExtraMilliseconds(offsetDateTime);
 
@@ -26,8 +28,8 @@ public class LocalDateTimeTest
         OffsetDateTime offsetDateTime2 = localDateTime.atOffset(OffsetDateTime.now().getOffset());
         OffsetDateTime trimmedOffsetDateTime2 = trimExtraMilliseconds(offsetDateTime2);
 
-        System.out.println(time+" string dd.MM.yyyy");
-        System.out.println(time2+" LocalDateTime");
+        //System.out.println(time+" string dd.MM.yyyy");
+        //System.out.println(time2+" LocalDateTime");
         System.out.println(trimmedOffsetDateTime+" LocalDateTime to OffsetDateTime");
         System.out.println(trimmedOffsetDateTime2+" LocalDateTime to OffsetDateTime option 2");
     }
