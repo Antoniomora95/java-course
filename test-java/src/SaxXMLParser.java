@@ -8,6 +8,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class SaxXMLParser {
     public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
@@ -20,8 +21,10 @@ public class SaxXMLParser {
         System.out.println(mediumHandler.getWebsite());
 
         List<MediumArticle> articles = mediumHandler.getWebsite().getArticlesList();
-        List<String> titlesList = articles.stream().map(MediumArticle::getTitle).toList();
-        List<String> contentList = articles.stream().map(article -> article.getContent().toUpperCase()).toList();
+        List<String> titlesList = articles.stream().map(MediumArticle::getTitle).collect(Collectors.toList());
+        List<String> contentList = articles.stream().
+                filter(article -> article.getTitle() != null && article.getContent() != null)
+                .map(article -> article.getContent().toUpperCase()).collect(Collectors.toList());
         System.out.printf("The titles list is: %s%n", titlesList);
         System.out.printf("The contents list (uppercase) is: %s%n", contentList);
     }
@@ -51,27 +54,25 @@ public class SaxXMLParser {
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
             switch (qName) {
-                case ARTICLES -> {
+                case ARTICLES:
                     website.setArticlesList(new ArrayList<>());
-                }
-                case ARTICLE -> {
+                case ARTICLE:
                     website.articlesList.add(new MediumArticle());
-                }
-                case TITLE, CONTENT -> {
+                case TITLE:
                     contentBuilder = new StringBuilder();
-                }
+                case CONTENT:
+                    contentBuilder = new StringBuilder();
+                break;
             }
         }
 
         @Override
         public void endElement(String uri, String localName, String qName) {
             switch (qName) {
-                case TITLE -> {
+                case TITLE:
                     latestArticle().setTitle(contentBuilder.toString());
-                }
-                case CONTENT -> {
+                case CONTENT:
                     latestArticle().setContent(contentBuilder.toString());
-                }
             }
         }
 
