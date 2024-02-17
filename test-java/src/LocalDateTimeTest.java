@@ -21,6 +21,10 @@ public class LocalDateTimeTest
         System.out.println(baseLocalTime+"base local time");
 
         OffsetDateTime offsetDateTime = OffsetDateTime.of(baseLocalTime, OffsetDateTime.now().getOffset());
+        OffsetDateTime offsetDateTimeShorter = OffsetDateTime.now();
+        OffsetDateTime offsetOneMonth = OffsetDateTime.now().plusMonths(1);
+
+        System.out.printf("the offset time is: %s, and one month ahead: %s\n", offsetDateTimeShorter, offsetOneMonth);
         OffsetDateTime trimmedOffsetDateTime = trimExtraMilliseconds(offsetDateTime);
 
         // option 2: transform from local date time to offset date time, and keep only 3 digits in milliseconds

@@ -27,6 +27,8 @@ public class SaxXMLParser {
                 .map(article -> article.getContent().toUpperCase()).collect(Collectors.toList());
         System.out.printf("The titles list is: %s%n", titlesList);
         System.out.printf("The contents list (uppercase) is: %s%n", contentList);
+
+        String.format("this is %s the value: %s",3, 4, 5);
     }
     public static class MediumHandler extends DefaultHandler {
         private static final String ARTICLES = "articles";

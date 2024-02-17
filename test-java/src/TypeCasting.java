@@ -6,11 +6,8 @@ public class TypeCasting {
         byte small = -128;
         byte b = 2;
         byte c = (byte) (b + a);
-        System.out.println(c);
 
         char someChar = 'k';
-        boolean isVisible = 5>4;
-        int notInitialized = 0;
         // here the + symbol casts char into an integer
         int isInt = someChar +1;
         //here you are forcing to get the char for the number which results from
@@ -20,7 +17,8 @@ public class TypeCasting {
         // basically %s helps you to attach your arguments to the string, in the order you passed them
         // to the function
         System.out.printf("this is a number %s, and %s is the char next to %s%n", isInt, isG, someChar);
-        System.out.println(notInitialized);
+        String test = "This is an string";
+        System.out.println(test.length());
     }
 }
 
